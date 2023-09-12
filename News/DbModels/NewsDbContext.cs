@@ -15,6 +15,7 @@ namespace News.DbModels
         public DbSet<DbNewsModel> News { get; set; }
         public DbSet<DbImageFile> Images { get; set; }
         public DbSet<Waypoint> Waypoints { get; set; }
+        public DbSet<Todo> Todos { get; set; }
     }
 
 }

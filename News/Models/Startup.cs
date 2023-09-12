@@ -22,6 +22,7 @@
 
             public void ConfigureServices(IServiceCollection services)
             {
+                services.Configure<PasswordHasherOptions>(opt => opt.IterationCount = 10000);
                 services.AddMvc();
                 services.AddDbContext<NewsDbContext>((options) =>
                 {
@@ -33,8 +34,8 @@
                 {
                     options.Password.RequiredLength = 8; 
                     options.Password.RequireNonAlphanumeric = false; 
+                  
                 })
-
     .AddEntityFrameworkStores<NewsDbContext>()
     .AddDefaultTokenProviders();
                 services.AddSession(options =>
@@ -73,9 +74,12 @@
                         defaults: new { controller = "News", action = "NewsDetail" });
                     endpoints.MapControllerRoute(
                  name: "default",
-                 pattern: "{controller=Map}/{action=Index}/{id?}"); 
-
+                 pattern: "{controller=Map}/{action=Index}/{id?}");
                     endpoints.MapControllerRoute(
+                name: "TodoList",
+                pattern: "{controller=Todo}/{action=Index}",
+            defaults: new { controller = "Todo", action = "Index" });
+                endpoints.MapControllerRoute(
                         name: "Edit",
                         pattern: "News/Edit",
                         defaults: new { controller = "News", action = "Edit" }
