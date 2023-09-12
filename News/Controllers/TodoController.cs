@@ -28,7 +28,7 @@ namespace News.Controllers
             // Load tasks for the selected date
             var tasks = _context.Todos
                 .Where(x => x.UserId == User.Identity.Name)
-                .Where(task => task.Date.Date == truedate.Date)
+                .Where(task => task.Date.Value.Date == truedate.Date)
                 .ToList();
 
             ViewData["SelectedDate"] = date;
@@ -41,7 +41,7 @@ namespace News.Controllers
             var currentDate = DateTime.Now.Date;
             var tasks = _context.Todos
                 .Where(x => x.UserId == User.Identity.Name)
-                .Where(task => task.Date.Date == currentDate)
+                .Where(task => task.Date.Value.Date == currentDate)
                 .ToList();
 
             ViewData["SelectedDate"] = currentDate.ToString("yyyy-MM-dd");
@@ -88,7 +88,10 @@ namespace News.Controllers
             var task = _context.Todos.Find(model.Id);
             if (task != null)
             {
-                task.Date = model.Date;
+                if (model.Date != null)
+                {
+                    task.Date = model.Date;
+                }
                 task.IsDone = model.IsDone;
                 task.Name = model.Name;
                 task.UserId = User.Identity.Name;

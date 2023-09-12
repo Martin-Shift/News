@@ -9,7 +9,7 @@ namespace News.DbModels
         public string Name { get; set; }
 
         public bool IsDone { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public string UserId { get; set; }
     }
