@@ -10,3 +10,9 @@ With authorization and authentification, you can login, logout, and register on 
 This is a map using Leaflet.js,      
 you can watch markers, placed on entire world
 meanwhile authorized users can edit them, add or delete markers.
+
+3: Todo list
+
+This is a to-do list, inspired by Google Calendar
+you can add tasks, edit, delete them, and tasks are exclusive to each user
+only for authorized users
